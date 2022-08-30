@@ -1,2 +1,5 @@
 # Full-TikTok-Api
-Full tiktok Api, xlog applog, device register, gorgon and api
+TikTok lite v16.9
+TikTok normal v19.1.3
+
+https://t.me/xtekky

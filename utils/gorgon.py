@@ -11,10 +11,10 @@ class Gorgon:
 
     def calculate(self, params, cookie, body):
 
-        self.hex_str = random.choice(self.HEX_STRS)
-        hash = self.getGorgonHash(params, body, cookie)
+        self.hex_str  = random.choice(self.HEX_STRS)
+        hash          = self.getGorgonHash(params, body, cookie)
         hexEncryption = self.encryption()
-        gorgonHash = self.initGorgonHash(hash, hexEncryption)
+        gorgonHash    = self.initGorgonHash(hash, hexEncryption)
 
         result = ""
         handle = self.handle(gorgonHash["gorgon"])
@@ -36,88 +36,42 @@ class Gorgon:
         return self.get_bianma((str[i:1]))
 
     def encryption(self):
-        tmp = A = B = C = D = None
-        hexs = []
-        for i in range(256):
-            hexs.append(i)
-
-        for i in range(256):
-            if i == 0:
-                A = 0
-            elif tmp is not None:
-                A = tmp
-            else:
-                A = hexs[i - 1]
-            B = self.hex_str[i % 8]
-            if (A == 85) & (i != 1) & (tmp != 85):
-                A = 0
-            C = self.ensureMax(A + i + B)
-            tmp = C if C < i else None
-            D = hexs[C]
-            hexs[i] = D
-        return hexs
+        pass
+        # removed from preview
+        
 
     def ensureMax(self, val, max=256):
-        while val >= 256:
-            val = val - 256
-        return val
+        pass
+        # removed from preview
+        
 
     def epoch(self):
         return int(round(time.time()))
 
     def convert_base(self, hex, base):
-        return sum(
-            self.digits[digit] * (base**i)
-            for i, digit in enumerate(reversed(hex.lower()))
-        )
+        pass
+        # removed from preview
+        
 
     def fromHex(self, hex):
-        return self.convert_base(hex, int(16))
+        pass
+        # removed from preview
+        
 
     def getGorgonHash(self, url, data=None, cookie=None, encoding="UTF-8"):
-        gorgon = []
-        times = int(round(time.time()))
-        hexTime = self.toHex(times)
-        urlmd5 = hashlib.md5(url.encode("UTF-8")).hexdigest()
-
-        rang = self.ranges(start=4)
-        for i in rang:
-            gorgon.append(self.fromHex(urlmd5[i * 2 : 2 * i + 2]))
-
-        gorgon = gorgon + self.xGorgon_data(data, encoding)
-        gorgon = gorgon + self.xGorgon_cookie(cookie, encoding)
-
-        for i in rang:
-            gorgon.append(0)
-
-        for i in rang:
-            gorgon.append(self.fromHex(hexTime[i * 2 : 2 * i + 2]))
-
-        return {"gorgon": gorgon, "time": times}
+        pass
+        # removed from preview
+        
 
     def get_bianma(self, str):
-        result = []
+        pass
+        # removed from preview
+        
 
     def handle(self, gorgonHash):
-        rang = self.ranges(self.LEN)
-        for i in rang:
-            A = gorgonHash[i]
-            B = self.reverse(A)
-            C = int(gorgonHash[(i + 1) % self.LEN])
-            D = B ^ C
-            E = self.rbit(D)
-            F = E ^ self.LEN
-            G = ~F
-            while G < 0:
-                G += 4294967296
-
-            a = self.toHex(G)
-            offset = len(a) - 2
-
-            H = self.fromHex(self.toHex(G)[offset:])
-            gorgonHash[i] = H
-
-        return gorgonHash
+        pass
+        # removed from preview
+        
 
     def hex2str(self, num):
         tmp = self.toHex(num)
@@ -126,103 +80,36 @@ class Gorgon:
         return tmp
 
     def initGorgonHash(self, gorgonHash, hexEncryption):
-        tmp_add = []
-        tmp_hex = [] + hexEncryption
-        A = B = C = D = E = F = G = None
-        rang = self.ranges(self.LEN)
-        for i in rang:
-            A = gorgonHash["gorgon"][i]
-            B = 0 if len(tmp_add) == 0 else tmp_add[-1]
-            C = self.ensureMax(hexEncryption[i + 1] + int(B))
-            tmp_add.append(C)
-            D = tmp_hex[C]
-            tmp_hex[i + 1] = D
-            E = self.ensureMax(D + D)
-            F = tmp_hex[E]
-            G = A ^ F
-            gorgonHash["gorgon"][i] = G
-
-        return gorgonHash
+        pass
+        # removed from preview
+        
 
     def ranges(self, start=0, stop=None, step=1):
-        if stop is None:
-            stop = start
-            start = 0
-
-        if ((step > 0) & (start >= stop)) or (step < 0) & (start <= stop):
-            return []
-
-        result = []
-
-        for x in range(start, stop, step):
-            result.append(x)
-
-        return result
+        pass
+        # removed from preview
+        
 
     def rbit(self, num):
-        result = ""
-        tmp = format(num, "b")
-
-        while len(tmp) < 8:
-            tmp = "0" + tmp
-
-        rang = self.ranges(8)
-        for i in rang:
-            result += tmp[7 - i]
-        return int(result, 2)
-
-    def reverse(self, num):
-        tmp = self.toHex(num)
-        if len(tmp) < 2:
-            tmp = "0" + tmp
-
-        return self.fromHex(tmp[1:10] + tmp[0:1])
+        pass
+        # removed from preview
+        
 
     def toHex(self, num):
-        return format(int(num), "x")
+        pass
+        # removed from preview
+        
 
     def uniord(self, str, from_encoding=False):
-        if len(str == 1):
-            return ord(str)
-        str = str.encode("UCS-4BE")
-        tmp = struct.pack("N", str)
-        return tmp[1]
+        pass
+        # removed from preview
+        
 
     def xGorgon_cookie(self, cookie, encoding="utf-8"):
-        gorgon = []
-        rang = self.ranges(4)
-        if (cookie is None) or (len(cookie) == 0):
-            for i in rang:
-                gorgon.append(0)
-        else:
-            hashstr = hashlib.md5(cookie.encode()).hexdigest()
-            for i in rang:
-                gorgon.append(self.fromHex(hashstr[i * 2 : 2 * i + 2]))
-
-        return gorgon
+        pass
+        # removed from preview
+        
 
     def xGorgon_data(self, data: (bytes or None or str), encoding="utf-8"):
-        gorgon = []
-        data_md5 = None
-
-        if (data is None) or (len(data) == 0):
-            rang = self.ranges(4)
-            for i in rang:
-                gorgon.append(0)
-        else:
-            try:
-                data_md5 = hashlib.md5(data).hexdigest()
-            except Exception:
-                data_md5 = hashlib.md5(data.encode('utf-8')).hexdigest()
-
-            if encoding == "octet":
-                try:
-                    data_md5 = hashlib.md5(data).hexdigest()
-                except Exception:
-                    data_md5 = hashlib.md5(data.encode('utf-8')).hexdigest()
-            rang = self.ranges(4)
-
-            for i in rang:
-                gorgon.append(self.fromHex(data_md5[i * 2 : 2 * i + 2]))
-
-        return gorgon
+        pass
+        # removed from preview
+        

@@ -4,4 +4,4 @@ TikTok normal v19.1.3
 
 https://t.me/xtekky
 
-price: **999€**
+price: **1.5k€**

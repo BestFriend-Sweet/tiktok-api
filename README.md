@@ -2,6 +2,6 @@
 TikTok lite v16.9
 TikTok normal v19.1.3
 
-https://t.me/xtekky
+contact https://t.me/xtekky (demo on request)
 
-price: **1.5k€**
+price: **1k€**

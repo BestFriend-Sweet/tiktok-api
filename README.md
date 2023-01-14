@@ -5,3 +5,5 @@ TikTok normal v19.1.3
 contact https://t.me/xtekky (demo on request)
 
 price: **1k€**
+
+TikTok Argus/Ladon also available
